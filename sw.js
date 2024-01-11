@@ -46,8 +46,8 @@ self.addEventListener('activate', evt => {
      evt.waitUntil(
           caches.keys().then(keyList => {
                return Promise.all(keyList
-                    .filter(key => key !== cacheName)
-                    .map(key => caches.delete())
+                    .filter(key => key !== cacheName && key !==dynamicCacheName)
+                    .map(key => caches.delete(key))
                )
           }
           )
@@ -68,7 +68,7 @@ self.addEventListener('fetch', evt => {
                });
           }).catch(() =>{
                if(evt.request.url.indexOf('.html') >-1){
-                    return caches.match('pages/default.html')
+                    return caches.match('/pages/default.html')
                }
                })
      );
