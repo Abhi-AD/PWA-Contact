@@ -23,11 +23,11 @@ const limitCacheSize = (name, size) => {
      caches.open(name).then((cache) => {
           cache.keys().then((keys) => {
                if (keys.length > size) {
-                    cache.delete(keys[0]).then(limitCacheSize(name, size))
+                    cache.delete(keys[0]).then(limitCacheSize(name, size));
                }
           })
      })
-}
+};
 
 // install ServiceWorker
 self.addEventListener('install', evt => {
@@ -56,20 +56,20 @@ self.addEventListener('activate', evt => {
 
 // fetch event
 self.addEventListener('fetch', evt => {
-     console.log(evt);
-     evt.respondWith(
-          caches.match(evt.request).then(cacheRespones => {
-               return cacheRespones || fetch(evt.request).then(fetchRespones => {
-                    return caches.open(dynamicCacheName).then(cache => {
-                         cache.put(evt.request.url, fetchRespones.clone())
-                         limitCacheSize(dynamicCacheName, 5);
-                         return fetchRespones;
-                    })
-               });
-          }).catch(() =>{
-               if(evt.request.url.indexOf('.html') >-1){
-                    return caches.match('/pages/default.html')
-               }
-               })
-     );
+     // console.log(evt);
+     // evt.respondWith(
+     //      caches.match(evt.request).then(cacheRespones => {
+     //           return cacheRespones || fetch(evt.request).then(fetchRespones => {
+     //                return caches.open(dynamicCacheName).then(cache => {
+     //                     cache.put(evt.request.url, fetchRespones.clone())
+     //                     limitCacheSize(dynamicCacheName, 5);
+     //                     return fetchRespones;
+     //                })
+     //           });
+     //      }).catch(() =>{
+     //           if(evt.request.url.indexOf('.html') >-1){
+     //                return caches.match('/pages/default.html')
+     //           }
+     //           })
+     // );
 })

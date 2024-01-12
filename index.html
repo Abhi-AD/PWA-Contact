@@ -53,7 +53,7 @@
       </div>
       <div class="contact-details">
         <div class="contact-title">Abhishek Dangi</div>
-        <div class="contact-numbers">+9779822946156</div>
+        <div class="contact-number">+9779822946156</div>
       </div>
       <div class="contact-options">
         <i class="material-icons">call</i>
@@ -68,49 +68,45 @@
   </div>
 
 
+<!-- add contact side nav -->
+<div id="side-form" class="sidenav side-form">
+  <form id="add-contact-form" class="add-contact container section">
+    <h6>New Contact</h6>
+    <div class="divider"></div>
+    <div class="input-field">
+      <input placeholder="Enter a name" id="name" type="text" class="validate">
+      <label for="name">Contact Name</label>
+    </div>
+    <div class="input-field">
+      <input placeholder="Enter a Number" id="number" type="text" class="validate">
+      <label for="number">Number</label>
+    </div>
+    <div class="input-field center">
+      <button type="submit">Add Contact</button>
+    </div>
+  </form>
+</div>
 
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"; // Import firestore module
 
-  <!-- add contact side nav -->
-  <div id="side-form" class="sidenav side-form">
-    <form class="add-contact container section">
-      <h6>New Contact</h6>
-      <div class="divider"></div>
-      <div class="input-field">
-        <input placeholder="Enter a name" id="title" type="text" class="validate">
-        <label for="title">Contact Name</label>
-      </div>
-      <div class="input-field">
-        <input placeholder="Enter a Number"" id=" numbers" type="text" class="validate">
-        <label for="numbers">Number</label>
-      </div>
-      <div class="input-field center">
-        <button class="btn-small">Add Contact</button>
-      </div>
-    </form>
-  </div>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCmVfHzOlRoBbQM-YPShBMfxP2jQXqnKcA",
+    authDomain: "all-contact-pwa-41603.firebaseapp.com",
+    projectId: "all-contact-pwa-41603",
+    storageBucket: "all-contact-pwa-41603.appspot.com",
+    messagingSenderId: "822787046174",
+    appId: "1:822787046174:web:7defea86ca7f5697d5670f"
+  };
 
-  <!-- firebox webpage create the this scripts -->
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBP0EGvg7jHLXBE27zD9vs8Gx3zY8Ia2hk",
-      authDomain: "all-contact-db.firebaseapp.com",
-      projectId: "all-contact-db",
-      storageBucket: "all-contact-db.appspot.com",
-      messagingSenderId: "254824076417",
-      appId: "1:254824076417:web:3d10465ef7c18144fbe980"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = app.firestore();
-  </script>
-  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // Use getFirestore instead of initializeApp for Firestore
+</script>
+
 
   <script type="text/javascript" src="js/common.js"></script>
   <script type="text/javascript" src="js/db.js"></script>
